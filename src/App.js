@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./App.css";
+import TicTacToe from "./components/TicTacToe";
+import FizzBuzz from "./components/FizzBuzz";
+import Hangman from "./components/Hangman";
 
-function App() {
+const App = () => {
+  React.useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app">
+        <nav className="menu">
+          <Link to="/tictactoe" data-aos="fade-up">
+            Tic-Tac-Toe
+          </Link>
+          <Link to="/fizzbuzz" data-aos="fade-up">
+            FizzBuzz
+          </Link>
+          <Link to="/hangman" data-aos="fade-up">
+            Hangman
+          </Link>
+        </nav>
+        <div className="game-container">
+          <Routes>
+            <Route path="/tictactoe" element={<TicTacToe />} />
+            <Route path="/fizzbuzz" element={<FizzBuzz />} />
+            <Route path="/hangman" element={<Hangman />} />
+            <Route path="/" element={<h1>Welcome to the Game Menu</h1>} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
