@@ -1,52 +1,41 @@
-body {
-  background-color: #282c34;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-.app {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-}
-
-.menu {
-  width: 200px;
-  background-color: #1e1e1e;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-}
-
-.menu a {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #61dafb;
-  color: #282c34;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
+.home-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: background-color 0.3s;
-  width: 100%;
-  box-sizing: border-box;
 }
 
-.menu a:hover {
-  background-color: #21a1f1;
+.home-title {
+  color: #333;
 }
 
-.game-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.home-container p {
+  color: #555;
+}
+
+.home-container h4 {
+  margin-top: 20px;
+  color: #444;
+}
+
+.home-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.home-container li {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.home-container li:hover {
+  background-color: #f0f0f0;
+}
+
+.home-container li span {
+  font-size: 18px;
 }

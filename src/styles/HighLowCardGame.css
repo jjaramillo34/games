@@ -1,0 +1,36 @@
+.highlow-root {
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.highlow-card {
+  margin: 20px auto;
+  padding: 40px;
+  width: 150px;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 2em;
+}
+
+.previous-card {
+  background-color: #ffcccc;
+  /* Light Red */
+}
+
+.current-card {
+  background-color: #cce5ff;
+  /* Light Blue */
+}
+
+.highlow-controls {
+  margin-top: 20px;
+}
+
+.highlow-scoreboard {
+  margin-top: 20px;
+}

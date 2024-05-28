@@ -1,0 +1,12 @@
+.brick-breaker {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.brick-breaker-info {
+  margin-top: 10px;
+}
+
+canvas {
+  border: 1px solid #000;
+}

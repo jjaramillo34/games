@@ -1,178 +1,59 @@
-/* Hangman.css */
-
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
 .hangman.game {
-  background: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 400px;
   text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-  color: #ffffff;
-}
-
-button {
-  background: #007bff;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background: #0056b3;
-}
-
-svg.hangman-drawing {
-  margin: 20px 0;
-}
-
-svg.hangman-drawing line,
-svg.hangman-drawing circle {
-  stroke: #ffffff;
+.hangman .hangman-drawing {
+  stroke: #000;
   stroke-width: 2;
 }
 
-.word {
+.hangman .word span {
   font-size: 24px;
-  letter-spacing: 2px;
-  margin: 20px 0;
+  font-weight: bold;
+  margin: 0 5px;
 }
 
-.guesses {
-  margin: 20px 0;
+.hangman .guesses {
+  margin-top: 20px;
 }
 
-input[type="text"] {
+.hangman input {
   padding: 10px;
+  font-size: 16px;
+}
+
+.hangman .guesses div {
   font-size: 18px;
-  border: 1px solid #333;
-  border-radius: 5px;
-  text-align: center;
-  background-color: #333;
-  color: #ffffff;
-}
-
-.previous-guesses {
-  margin: 20px 0;
-}
-
-.correct-guess {
-  color: #76ff03;
   font-weight: bold;
-  margin-right: 5px;
+  color: #61dafb;
 }
 
-.wrong-guess {
-  color: #ff1744;
-  font-weight: bold;
-  margin-right: 5px;
+.hangman .hint {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #61dafb;
 }
 
-.hint {
-  background: #ffeb3b;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 20px 0;
-  color: #000;
+.hangman .previous-guesses {
+  margin-top: 20px;
 }
 
-.message {
-  background: #ff5722;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 20px 0;
+.hangman .previous-guesses span {
+  font-size: 18px;
+  margin: 0 5px;
 }
 
-.scoreboard {
-  background: #007bff;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 20px 0;
+.hangman .correct-guess {
+  color: green;
 }
 
-.scoreboard p {
-  margin: 5px 0;
-}
-
-.previous-words {
-  margin: 20px 0;
-  text-align: left;
-}
-
-.previous-word {
-  display: inline-block;
-  background: #424242;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin: 5px;
-  color: #ffffff;
-}
-
-/* Media queries for smaller screens */
-@media (max-width: 600px) {
-  .hangman.game {
-    padding: 10px;
-    max-width: 100%;
-    width: 100%;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
-  button {
-    padding: 10px;
-    margin: 5px 2px;
-    width: 100%;
-  }
-
-  svg.hangman-drawing {
-    width: 100%;
-    height: auto;
-  }
-
-  .word {
-    font-size: 20px;
-    letter-spacing: 1px;
-    margin: 15px 0;
-  }
-
-  .guesses {
-    margin: 15px 0;
-  }
-
-  input[type="text"] {
-    padding: 8px;
-    font-size: 16px;
-  }
-
-  .hint,
-  .message,
-  .scoreboard,
-  .previous-words {
-    padding: 8px;
-    margin: 15px 0;
-  }
-
-  .previous-word {
-    padding: 3px 8px;
-    margin: 3px;
-  }
+.hangman .wrong-guess {
+  color: red;
 }

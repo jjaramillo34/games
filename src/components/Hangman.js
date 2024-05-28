@@ -99,44 +99,63 @@ const Hangman = () => {
     }
   }, [isGameWon, isGameOver]);
 
+  const resetGame = () => {
+    setWord("");
+    setGuesses([]);
+    setWrongGuesses(0);
+    setHint("");
+    setLanguage("en");
+    setWinCount(0);
+    setLossCount(0);
+    setMessage("");
+    setPreviousWords([]);
+    setDifficulty("easy");
+    fetchNewWord();
+  };
+
   return (
     <div className="hangman game">
       <h1>Hangman</h1>
-      <div>
-        <button onClick={() => setLanguage("en")}>English</button>
-        <button onClick={() => setLanguage("es")}>Spanish</button>
+      <div className="button-container">
+        <div>
+          <button onClick={() => setLanguage("en")}>English</button>
+          <button onClick={() => setLanguage("es")}>Spanish</button>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="easy"
+              checked={difficulty === "easy"}
+              onChange={() => setDifficulty("easy")}
+            />
+            Easy
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="medium"
+              checked={difficulty === "medium"}
+              onChange={() => setDifficulty("medium")}
+            />
+            Medium
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="hard"
+              checked={difficulty === "hard"}
+              onChange={() => setDifficulty("hard")}
+            />
+            Hard
+          </label>
+        </div>
+        <div>
+          <button onClick={fetchNewWord}>New Word</button>
+          <button onClick={handleHint}>Hint</button>
+          <button onClick={resetGame}>Reset Game</button>
+        </div>
       </div>
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="easy"
-            checked={difficulty === "easy"}
-            onChange={() => setDifficulty("easy")}
-          />
-          Easy
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="medium"
-            checked={difficulty === "medium"}
-            onChange={() => setDifficulty("medium")}
-          />
-          Medium
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="hard"
-            checked={difficulty === "hard"}
-            onChange={() => setDifficulty("hard")}
-          />
-          Hard
-        </label>
-      </div>
-      <button onClick={fetchNewWord}>Reset</button>
-      <button onClick={handleHint}>Hint</button>
       <svg height="250" width="200" className="hangman-drawing">
         {/* Base */}
         {wrongGuesses > 0 && <line x1="10" y1="240" x2="140" y2="240" />}
