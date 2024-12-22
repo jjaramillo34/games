@@ -1,0 +1,35 @@
+/* Card flipping styles */
+.card-inner {
+  @apply relative w-full h-full transition-transform duration-500 transform-gpu;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  @apply absolute w-full h-full backface-hidden;
+}
+
+.card-front {
+  @apply bg-gradient-to-br from-purple-600 to-purple-700;
+}
+
+.card-back {
+  @apply bg-white;
+  transform: rotateY(180deg);
+}
+
+.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Ensure proper 3D rendering */
+.preserve-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Fix for Safari */
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}

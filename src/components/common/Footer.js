@@ -1,28 +1,29 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-const Footer = () => {
+const Footer = ({ isDarkTheme }) => {
+  const { t } = useTranslation();
+
   return (
-    <Box
-      component="footer"
-      sx={{
-        py: 3,
-        px: 2,
-        mt: "auto",
-        backgroundColor: (theme) =>
-          theme.palette.mode === "light"
-            ? theme.palette.grey[200]
-            : theme.palette.grey[800],
-      }}
+    <footer
+      className={`w-full py-4 ${
+        isDarkTheme
+          ? "bg-gray-900/80 border-t border-gray-800"
+          : "bg-white/80 border-t border-gray-200"
+      }`}
     >
-      <Typography variant="body1" color="textSecondary" align="center">
-        &copy; {new Date().getFullYear()} Game Menu. All Rights Reserved.
-        <br />
-        <span style={{ fontSize: "0.8em" }}>
-          Built with ❤️ using React and Material-UI
-        </span>
-      </Typography>
-    </Box>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <p
+            className={`text-sm ${
+              isDarkTheme ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            © 2024 {t("createdBy")} Javier Jaramillo. {t("allRightsReserved")}.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
 

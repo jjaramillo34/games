@@ -1,0 +1,50 @@
+{
+  "highLowGame": {
+    "title": "Juego de Cartas Alto-Bajo",
+    "rules": {
+      "title": "Cómo Jugar",
+      "show": "Mostrar Reglas",
+      "hide": "Ocultar Reglas",
+      "list": {
+        "guess": "Adivina si la siguiente carta será más alta o más baja",
+        "faceCards": "Cartas de figura: J=11, Q=12, K=13, A=14",
+        "streak": "¡Construye la racha más larga posible!"
+      }
+    },
+    "stats": {
+      "streak": "Racha",
+      "best": "Mejor",
+      "wins": "Victorias",
+      "losses": "Derrotas"
+    },
+    "cards": {
+      "previous": "Anterior",
+      "current": "Actual"
+    },
+    "actions": {
+      "higher": "Más Alta ↑",
+      "lower": "Más Baja ↓",
+      "newRound": "Nueva Ronda"
+    },
+    "messages": {
+      "correct": "¡Correcto! ¡Sigue así!",
+      "wrong": "¡Incorrecto! ¡Inténtalo de nuevo!"
+    },
+    "modes": {
+      "title": "Modo de Juego",
+      "classic": "Clásico",
+      "timeAttack": "Contrarreloj",
+      "targetScore": "Puntuación Objetivo"
+    },
+    "difficulty": {
+      "title": "Dificultad",
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil"
+    },
+    "leaderboard": {
+      "title": "Tabla de Clasificación",
+      "noRecords": "Aún no hay registros"
+    }
+  }
+}

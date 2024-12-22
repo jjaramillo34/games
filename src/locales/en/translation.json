@@ -1,0 +1,50 @@
+{
+  "highLowGame": {
+    "title": "High-Low Card Game",
+    "rules": {
+      "title": "How to Play",
+      "show": "Show Rules",
+      "hide": "Hide Rules",
+      "list": {
+        "guess": "Guess if the next card will be higher or lower",
+        "faceCards": "Face cards: J=11, Q=12, K=13, A=14",
+        "streak": "Build the longest streak possible!"
+      }
+    },
+    "stats": {
+      "streak": "Streak",
+      "best": "Best",
+      "wins": "Wins",
+      "losses": "Losses"
+    },
+    "cards": {
+      "previous": "Previous",
+      "current": "Current"
+    },
+    "actions": {
+      "higher": "Higher ↑",
+      "lower": "Lower ↓",
+      "newRound": "New Round"
+    },
+    "messages": {
+      "correct": "Correct! Keep going!",
+      "wrong": "Wrong guess! Try again!"
+    },
+    "modes": {
+      "title": "Game Mode",
+      "classic": "Classic",
+      "timeAttack": "Time Attack",
+      "targetScore": "Target Score"
+    },
+    "difficulty": {
+      "title": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "noRecords": "No records yet"
+    }
+  }
+}
