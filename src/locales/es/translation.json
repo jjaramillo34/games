@@ -1,4 +1,164 @@
 {
+  "navigation": {
+    "gameMenu": "Menú de Juegos",
+    "games": "Juegos",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Oscuro"
+  },
+  "gameNames": {
+    "ticTacToe": "Tres en Línea",
+    "fizzBuzz": "FizzBuzz",
+    "hangman": "Ahorcado",
+    "highLowCardGame": "Juego de Cartas Alto-Bajo",
+    "memoryGame": "Juego de Memoria",
+    "numberMaster": "Maestro de Números"
+  },
+  "ticTacToe": {
+    "title": "Tres en Línea",
+    "description": "Clásico juego de X's y O's. ¡Juega contra un amigo o desafía a la computadora!",
+    "selectMode": "Elige el Modo de Juego",
+    "modes": {
+      "human": "Jugar con Humano",
+      "computerEasy": "Jugar vs Computadora (Fácil)",
+      "computerMedium": "Jugar vs Computadora (Medio)",
+      "computerHard": "Jugar vs Computadora (Difícil)"
+    },
+    "stats": {
+      "wins": "Victorias"
+    },
+    "actions": {
+      "reset": "Reiniciar Juego",
+      "showHistory": "Mostrar Historial",
+      "hideHistory": "Ocultar Historial",
+      "newGame": "Nuevo Juego"
+    },
+    "history": {
+      "title": "Historial de Juego",
+      "game": "Partida {{number}}"
+    },
+    "nextPlayer": "Siguiente jugador",
+    "computerThinking": "La computadora está pensando...",
+    "draw": "¡El juego terminó en empate!",
+    "wins": "gana"
+  },
+  "homePage": {
+    "welcome": "Bienvenido a la Colección de Juegos",
+    "chooseGame": "Elige un juego para jugar",
+    "features": {
+      "modernDesign": {
+        "emoji": "🎮",
+        "title": "Diseño Moderno",
+        "description": "Interfaz hermosa y adaptable con animaciones suaves"
+      },
+      "trackProgress": {
+        "emoji": "🏆",
+        "title": "Seguimiento de Progreso",
+        "description": "Mantén un registro de tus logros y mejores puntuaciones"
+      },
+      "multipleModes": {
+        "emoji": "🎯",
+        "title": "Múltiples Modos",
+        "description": "Diferentes modos de juego y niveles de dificultad para desafiarte"
+      }
+    },
+    "dedication": {
+      "emoji": "❤️",
+      "title": "Dedicatoria",
+      "text": "Hecho con ❤️ por Javier Jaramillo",
+      "quote": "Los juegos no son solo para jugar; son para crear recuerdos y divertirse juntos."
+    }
+  },
+  "commonActions": {
+    "play": "Jugar",
+    "start": "Comenzar",
+    "restart": "Reiniciar",
+    "back": "Volver",
+    "playAgain": "Jugar de Nuevo",
+    "submit": "Enviar",
+    "endGame": "Terminar Juego"
+  },
+  "gameStates": {
+    "win": "Victoria",
+    "lose": "Derrota",
+    "draw": "Empate",
+    "yourTurn": "Tu Turno",
+    "gameOver": "¡Juego Terminado! Puntuación Final: {{score}} | Mejor Puntuación: {{highScore}}",
+    "correct": "¡Correcto!",
+    "incorrect": "¡Incorrecto! La respuesta era: {{correct}}"
+  },
+  "difficulty": {
+    "easy": "Fácil",
+    "medium": "Medio",
+    "hard": "Difícil",
+    "selectDifficulty": "Seleccionar Dificultad"
+  },
+  "gameModes": {
+    "selectGameMode": "Seleccionar Modo de Juego",
+    "practiceMode": "Modo Práctica",
+    "challengeMode": "Modo Desafío",
+    "timeAttackMode": "Modo Contrarreloj"
+  },
+  "fizzBuzz": {
+    "title": "Desafío FizzBuzz",
+    "description": "¡Pon a prueba tus habilidades de divisibilidad en este clásico juego de programación!",
+    "enterNumber": "Ingresa un número",
+    "enterAnswer": "Ingresa tu respuesta (Fizz, Buzz, o FizzBuzz)",
+    "enterValidNumber": "Por favor ingresa un número válido",
+    "score": "Puntuación",
+    "streak": "Racha",
+    "time": "Tiempo",
+    "history": "Historial",
+    "historyEntry": "Número {{number}}: Respondiste {{answer}}, la respuesta correcta era {{correct}}",
+    "showRules": "Mostrar Reglas",
+    "hideRules": "Ocultar Reglas",
+    "rules": "Reglas",
+    "rule1": "Si un número es divisible por 3, di 'Fizz'",
+    "rule2": "Si un número es divisible por 5, di 'Buzz'",
+    "rule3": "Si un número es divisible por 3 y 5, di 'FizzBuzz'",
+    "rule4": "De lo contrario, solo di el número",
+    "selectGameMode": "Seleccionar Modo de Juego",
+    "modes": {
+      "practice": "Modo Práctica",
+      "challenge": "Modo Desafío",
+      "timeAttack": "Modo Contrarreloj"
+    },
+    "selectDifficulty": "Seleccionar Dificultad",
+    "difficulty": {
+      "easy": "Fácil (1-50)",
+      "medium": "Medio (1-100)",
+      "hard": "Difícil (1-1000)"
+    },
+    "stats": {
+      "score": "Puntuación: {{score}}",
+      "streak": "Racha: {{streak}}",
+      "highScore": "Mejor Puntuación: {{score}}",
+      "currentLevel": "Nivel: {{level}}",
+      "timeLeft": "Tiempo Restante: {{time}}s"
+    },
+    "placeholders": {
+      "answer": "Escribe tu respuesta aquí..."
+    },
+    "actions": {
+      "submit": "Enviar Respuesta",
+      "endGame": "Terminar Juego",
+      "retry": "Intentar de Nuevo",
+      "continue": "Continuar"
+    },
+    "history": {
+      "title": "Historial del Juego",
+      "entry": "Ronda {{number}}: {{result}}"
+    },
+    "messages": {
+      "correct": "¡Correcto!",
+      "incorrect": "¡Incorrecto! Inténtalo de nuevo.",
+      "gameOver": "¡Juego Terminado!",
+      "newHighScore": "¡Nueva Mejor Puntuación!"
+    }
+  },
+  "footer": {
+    "createdBy": "Creado por",
+    "allRightsReserved": "Todos los derechos reservados"
+  },
   "highLowGame": {
     "title": "Juego de Cartas Alto-Bajo",
     "rules": {
@@ -28,7 +188,9 @@
     },
     "messages": {
       "correct": "¡Correcto! ¡Sigue así!",
-      "wrong": "¡Incorrecto! ¡Inténtalo de nuevo!"
+      "wrong": "¡Incorrecto! ¡Inténtalo de nuevo!",
+      "gameOver": "¡Juego Terminado!",
+      "youWon": "¡Has Ganado!"
     },
     "modes": {
       "title": "Modo de Juego",
@@ -45,6 +207,178 @@
     "leaderboard": {
       "title": "Tabla de Clasificación",
       "noRecords": "Aún no hay registros"
+    }
+  },
+  "memoryGame": {
+    "title": "Juego de Memoria",
+    "description": "Pon a prueba tu memoria encontrando pares de cartas",
+    "stats": {
+      "turns": "Turnos",
+      "pairs": "Pares Encontrados",
+      "timeElapsed": "Tiempo",
+      "bestScore": "Mejor Puntuación",
+      "level": "Nivel",
+      "pairsLeft": "Pares Restantes",
+      "accuracy": "Precisión",
+      "currentStreak": "Racha Actual",
+      "bestStreak": "Mejor Racha"
+    },
+    "difficulty": {
+      "title": "Seleccionar Dificultad",
+      "easy": "Fácil (4x4)",
+      "medium": "Medio (6x6)",
+      "hard": "Difícil (8x8)",
+      "description": {
+        "easy": "Perfecto para principiantes - encuentra 8 pares",
+        "medium": "Un buen desafío - encuentra 18 pares",
+        "hard": "Para maestros de la memoria - encuentra 32 pares"
+      }
+    },
+    "actions": {
+      "reset": "Reiniciar Juego",
+      "newGame": "Nuevo Juego",
+      "pause": "Pausar",
+      "resume": "Continuar",
+      "restart": "Reiniciar",
+      "mainMenu": "Menú Principal",
+      "settings": "Ajustes",
+      "showStats": "Mostrar Estadísticas",
+      "hideStats": "Ocultar Estadísticas",
+      "showAchievements": "Mostrar Logros",
+      "hideAchievements": "Ocultar Logros"
+    },
+    "messages": {
+      "start": "Haz clic en cualquier carta para comenzar",
+      "paused": "Juego Pausado",
+      "complete": "¡Felicitaciones! ¡Has completado el nivel!",
+      "newHighScore": "¡Nueva Mejor Puntuación!",
+      "matchFound": "¡Par encontrado!",
+      "tryAgain": "¡Inténtalo de nuevo!",
+      "timeUp": "¡Se acabó el tiempo!",
+      "ready": "¿Listo para jugar?",
+      "gameOver": "¡Juego Terminado!",
+      "perfectScore": "¡Puntuación Perfecta!",
+      "almostThere": "¡Casi lo logras!",
+      "keepPracticing": "¡Sigue practicando!",
+      "newAchievement": "¡Nuevo Logro Desbloqueado!",
+      "pairNotMatched": "No es un par, ¡inténtalo de nuevo!",
+      "levelComplete": "¡Nivel Completado!",
+      "newRecord": "¡Nuevo Récord!",
+      "selectDifficulty": "Selecciona la dificultad para comenzar"
+    },
+    "themes": {
+      "title": "Seleccionar Tema",
+      "emojis": "Emojis",
+      "animals": "Animales",
+      "fruits": "Frutas",
+      "space": "Espacio",
+      "description": {
+        "emojis": "Cartas divertidas y coloridas con emojis",
+        "animals": "Emojis de animales adorables",
+        "fruits": "Emojis de frutas deliciosas",
+        "space": "Emojis espaciales y celestiales"
+      }
+    },
+    "achievements": {
+      "title": "Logros",
+      "firstWin": "Primera Victoria",
+      "perfectGame": "Juego Perfecto",
+      "speedster": "Velocista",
+      "memoryMaster": "Maestro de la Memoria",
+      "streakMaster": "Maestro de las Rachas",
+      "stats": {
+        "gamesPlayed": "Partidas Jugadas",
+        "totalTime": "Tiempo Total Jugado",
+        "averageTime": "Tiempo Promedio por Juego",
+        "fastestGame": "Juego Más Rápido",
+        "totalPairs": "Total de Pares Encontrados",
+        "accuracy": "Precisión General"
+      }
+    }
+  },
+  "numberMaster": {
+    "title": "Maestro de Números",
+    "description": "Desafía tu mente con rompecabezas numéricos",
+    "modes": {
+      "title": "Modos de Juego",
+      "classic": "Sudoku Clásico",
+      "speed": "Desafío de Velocidad",
+      "puzzle": "Rompecabezas Numérico",
+      "description": {
+        "classic": "Llena la cuadrícula siguiendo las reglas del Sudoku",
+        "speed": "Resuelve tantos mini-puzzles como puedas en 5 minutos",
+        "puzzle": "Organiza los números para alcanzar la suma objetivo"
+      }
+    },
+    "difficulty": {
+      "title": "Seleccionar Dificultad",
+      "easy": "Fácil (9x9)",
+      "medium": "Medio (9x9 con menos pistas)",
+      "hard": "Difícil (9x9 con mínimas pistas)",
+      "expert": "Experto (12x12)",
+      "description": {
+        "easy": "Perfecto para principiantes - muchas pistas",
+        "medium": "Un buen desafío - menos pistas",
+        "hard": "Para maestros de números - pistas mínimas",
+        "expert": "Desafío máximo - cuadrícula más grande"
+      }
+    },
+    "actions": {
+      "check": "Verificar Solución",
+      "hint": "Obtener Pista",
+      "clear": "Limpiar Tablero",
+      "undo": "Deshacer",
+      "notes": "Alternar Notas"
+    },
+    "messages": {
+      "correct": "¡Colocación correcta!",
+      "incorrect": "Eso no está bien, inténtalo de nuevo",
+      "complete": "¡Rompecabezas completado!",
+      "newRecord": "¡Nuevo récord de tiempo!",
+      "invalidMove": "Movimiento inválido - revisa las reglas",
+      "hint": "Intenta enfocarte en esta celda...",
+      "timeBonus": "Bono de tiempo: {{seconds}} segundos",
+      "remainingHints": "Pistas restantes: {{count}}"
+    },
+    "stats": {
+      "time": "Tiempo",
+      "moves": "Movimientos",
+      "hints": "Pistas Usadas",
+      "accuracy": "Precisión",
+      "bestTime": "Mejor Tiempo",
+      "averageTime": "Tiempo Promedio",
+      "gamesCompleted": "Juegos Completados",
+      "currentStreak": "Racha Actual"
+    },
+    "rules": {
+      "title": "Cómo Jugar",
+      "classic": [
+        "Llena cada celda con un número del 1 al 9",
+        "Cada fila debe contener todos los números del 1 al 9",
+        "Cada columna debe contener todos los números del 1 al 9",
+        "Cada caja 3x3 debe contener todos los números del 1 al 9",
+        "Ningún número puede repetirse en fila, columna o caja"
+      ],
+      "speed": [
+        "Resuelve mini-puzzles lo más rápido posible",
+        "Cada solución correcta añade tiempo",
+        "Los errores reducen tu tiempo",
+        "Completa tantos como puedas antes de que se acabe el tiempo"
+      ],
+      "puzzle": [
+        "Organiza los números para alcanzar la suma objetivo",
+        "Los números solo pueden usarse una vez",
+        "Encuentra múltiples soluciones para puntos extra",
+        "Usa las pistas sabiamente - cuestan puntos"
+      ]
+    },
+    "achievements": {
+      "title": "Logros",
+      "speedster": "Completa un puzzle en menos de 5 minutos",
+      "noHints": "Completa un puzzle sin usar pistas",
+      "perfectScore": "Completa un puzzle sin errores",
+      "grandMaster": "Completa un puzzle experto",
+      "streakMaster": "Completa 5 puzzles seguidos"
     }
   }
 }

@@ -1,4 +1,164 @@
 {
+  "navigation": {
+    "gameMenu": "Game Menu",
+    "games": "Games",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode"
+  },
+  "gameNames": {
+    "ticTacToe": "Tic Tac Toe",
+    "fizzBuzz": "FizzBuzz",
+    "hangman": "Hangman",
+    "highLowCardGame": "High Low Card Game",
+    "memoryGame": "Memory Game",
+    "numberMaster": "Number Master"
+  },
+  "ticTacToe": {
+    "title": "Tic Tac Toe",
+    "description": "Classic game of X's and O's. Play against a friend or challenge the computer!",
+    "selectMode": "Select Game Mode",
+    "modes": {
+      "human": "Play with Human",
+      "computerEasy": "Play vs Computer (Easy)",
+      "computerMedium": "Play vs Computer (Medium)",
+      "computerHard": "Play vs Computer (Hard)"
+    },
+    "stats": {
+      "wins": "Wins"
+    },
+    "actions": {
+      "reset": "Reset Game",
+      "showHistory": "Show History",
+      "hideHistory": "Hide History",
+      "newGame": "New Game"
+    },
+    "history": {
+      "title": "Game History",
+      "game": "Game {{number}}"
+    },
+    "nextPlayer": "Next player",
+    "computerThinking": "Computer is thinking...",
+    "draw": "Game ended in a tie!",
+    "wins": "wins"
+  },
+  "homePage": {
+    "welcome": "Welcome to the Game Collection",
+    "chooseGame": "Choose a game to play",
+    "features": {
+      "modernDesign": {
+        "emoji": "🎮",
+        "title": "Modern Design",
+        "description": "Beautiful and responsive interface with smooth animations"
+      },
+      "trackProgress": {
+        "emoji": "🏆",
+        "title": "Track Progress",
+        "description": "Keep track of your achievements and high scores"
+      },
+      "multipleModes": {
+        "emoji": "🎯",
+        "title": "Multiple Modes",
+        "description": "Different game modes and difficulty levels to challenge yourself"
+      }
+    },
+    "dedication": {
+      "emoji": "❤️",
+      "title": "Dedication",
+      "text": "Made with ❤️ by Javier Jaramillo",
+      "quote": "Gaming is not just about playing; it's about creating memories and having fun together."
+    }
+  },
+  "commonActions": {
+    "play": "Play",
+    "start": "Start",
+    "restart": "Restart",
+    "back": "Back",
+    "playAgain": "Play Again",
+    "submit": "Submit",
+    "endGame": "End Game"
+  },
+  "gameStates": {
+    "win": "Win",
+    "lose": "Lose",
+    "draw": "Draw",
+    "yourTurn": "Your Turn",
+    "gameOver": "Game Over! Final Score: {{score}} | High Score: {{highScore}}",
+    "correct": "Correct!",
+    "incorrect": "Incorrect! The answer was: {{correct}}"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "selectDifficulty": "Select Difficulty"
+  },
+  "gameModes": {
+    "selectGameMode": "Select Game Mode",
+    "practiceMode": "Practice Mode",
+    "challengeMode": "Challenge Mode",
+    "timeAttackMode": "Time Attack Mode"
+  },
+  "fizzBuzz": {
+    "title": "FizzBuzz Challenge",
+    "description": "Test your divisibility skills in this classic coding game!",
+    "enterNumber": "Enter a number",
+    "enterAnswer": "Enter your answer (Fizz, Buzz, or FizzBuzz)",
+    "enterValidNumber": "Please enter a valid number",
+    "score": "Score",
+    "streak": "Streak",
+    "time": "Time",
+    "history": "History",
+    "historyEntry": "Number {{number}}: You answered {{answer}}, correct answer was {{correct}}",
+    "showRules": "Show Rules",
+    "hideRules": "Hide Rules",
+    "rules": "Rules",
+    "rule1": "If a number is divisible by 3, say 'Fizz'",
+    "rule2": "If a number is divisible by 5, say 'Buzz'",
+    "rule3": "If a number is divisible by both 3 and 5, say 'FizzBuzz'",
+    "rule4": "Otherwise, just say the number",
+    "selectGameMode": "Select Game Mode",
+    "modes": {
+      "practice": "Practice Mode",
+      "challenge": "Challenge Mode",
+      "timeAttack": "Time Attack"
+    },
+    "selectDifficulty": "Select Difficulty",
+    "difficulty": {
+      "easy": "Easy (1-50)",
+      "medium": "Medium (1-100)",
+      "hard": "Hard (1-1000)"
+    },
+    "stats": {
+      "score": "Score: {{score}}",
+      "streak": "Streak: {{streak}}",
+      "highScore": "High Score: {{score}}",
+      "currentLevel": "Level: {{level}}",
+      "timeLeft": "Time Left: {{time}}s"
+    },
+    "placeholders": {
+      "answer": "Type your answer here..."
+    },
+    "actions": {
+      "submit": "Submit Answer",
+      "endGame": "End Game",
+      "retry": "Try Again",
+      "continue": "Continue"
+    },
+    "history": {
+      "title": "Game History",
+      "entry": "Round {{number}}: {{result}}"
+    },
+    "messages": {
+      "correct": "Correct!",
+      "incorrect": "Incorrect! Try again.",
+      "gameOver": "Game Over!",
+      "newHighScore": "New High Score!"
+    }
+  },
+  "footer": {
+    "createdBy": "Created by",
+    "allRightsReserved": "All rights reserved"
+  },
   "highLowGame": {
     "title": "High-Low Card Game",
     "rules": {
@@ -28,7 +188,9 @@
     },
     "messages": {
       "correct": "Correct! Keep going!",
-      "wrong": "Wrong guess! Try again!"
+      "wrong": "Wrong guess! Try again!",
+      "gameOver": "Game Over!",
+      "youWon": "You won!"
     },
     "modes": {
       "title": "Game Mode",
@@ -45,6 +207,178 @@
     "leaderboard": {
       "title": "Leaderboard",
       "noRecords": "No records yet"
+    }
+  },
+  "memoryGame": {
+    "title": "Memory Game",
+    "description": "Test your memory by matching pairs of cards",
+    "stats": {
+      "turns": "Turns",
+      "pairs": "Pairs Found",
+      "timeElapsed": "Time",
+      "bestScore": "Best Score",
+      "level": "Level",
+      "pairsLeft": "Pairs Left",
+      "accuracy": "Accuracy",
+      "currentStreak": "Current Streak",
+      "bestStreak": "Best Streak"
+    },
+    "difficulty": {
+      "title": "Select Difficulty",
+      "easy": "Easy (4x4)",
+      "medium": "Medium (6x6)",
+      "hard": "Hard (8x8)",
+      "description": {
+        "easy": "Perfect for beginners - find 8 pairs",
+        "medium": "A good challenge - find 18 pairs",
+        "hard": "For memory masters - find 32 pairs"
+      }
+    },
+    "actions": {
+      "reset": "Reset Game",
+      "newGame": "New Game",
+      "pause": "Pause",
+      "resume": "Resume",
+      "restart": "Restart",
+      "mainMenu": "Main Menu",
+      "settings": "Settings",
+      "showStats": "Show Stats",
+      "hideStats": "Hide Stats",
+      "showAchievements": "Show Achievements",
+      "hideAchievements": "Hide Achievements"
+    },
+    "messages": {
+      "start": "Click any card to start",
+      "paused": "Game Paused",
+      "complete": "Congratulations! You've completed the level!",
+      "newHighScore": "New High Score!",
+      "matchFound": "Match found!",
+      "tryAgain": "Try again!",
+      "timeUp": "Time's up!",
+      "ready": "Ready to play?",
+      "gameOver": "Game Over!",
+      "perfectScore": "Perfect Score!",
+      "almostThere": "Almost there!",
+      "keepPracticing": "Keep practicing!",
+      "newAchievement": "New Achievement Unlocked!",
+      "pairNotMatched": "Not a match, try again!",
+      "levelComplete": "Level Complete!",
+      "newRecord": "New Record!",
+      "selectDifficulty": "Select difficulty to start"
+    },
+    "themes": {
+      "title": "Select Theme",
+      "emojis": "Emojis",
+      "animals": "Animals",
+      "fruits": "Fruits",
+      "space": "Space",
+      "description": {
+        "emojis": "Fun and colorful emoji cards",
+        "animals": "Cute animal emojis",
+        "fruits": "Delicious fruit emojis",
+        "space": "Space and celestial emojis"
+      }
+    },
+    "achievements": {
+      "title": "Achievements",
+      "firstWin": "First Victory",
+      "perfectGame": "Perfect Game",
+      "speedster": "Speedster",
+      "memoryMaster": "Memory Master",
+      "streakMaster": "Streak Master",
+      "stats": {
+        "gamesPlayed": "Games Played",
+        "totalTime": "Total Time Played",
+        "averageTime": "Average Time per Game",
+        "fastestGame": "Fastest Game",
+        "totalPairs": "Total Pairs Matched",
+        "accuracy": "Overall Accuracy"
+      }
+    }
+  },
+  "numberMaster": {
+    "title": "NumberMaster",
+    "description": "Challenge your mind with number puzzles",
+    "modes": {
+      "title": "Game Modes",
+      "classic": "Classic Sudoku",
+      "speed": "Speed Challenge",
+      "puzzle": "Number Puzzle",
+      "description": {
+        "classic": "Fill the grid following Sudoku rules",
+        "speed": "Solve as many mini-puzzles as you can in 5 minutes",
+        "puzzle": "Arrange numbers to match the target sum"
+      }
+    },
+    "difficulty": {
+      "title": "Select Difficulty",
+      "easy": "Easy (9x9)",
+      "medium": "Medium (9x9 with less hints)",
+      "hard": "Hard (9x9 with minimal hints)",
+      "expert": "Expert (12x12)",
+      "description": {
+        "easy": "Perfect for beginners - lots of hints",
+        "medium": "A good challenge - fewer hints",
+        "hard": "For number masters - minimal hints",
+        "expert": "Ultimate challenge - larger grid"
+      }
+    },
+    "actions": {
+      "check": "Check Solution",
+      "hint": "Get Hint",
+      "clear": "Clear Board",
+      "undo": "Undo",
+      "notes": "Toggle Notes"
+    },
+    "messages": {
+      "correct": "Correct placement!",
+      "incorrect": "That's not right, try again",
+      "complete": "Puzzle completed!",
+      "newRecord": "New record time!",
+      "invalidMove": "Invalid move - check the rules",
+      "hint": "Try focusing on this cell...",
+      "timeBonus": "Time bonus: {{seconds}} seconds",
+      "remainingHints": "Remaining hints: {{count}}"
+    },
+    "stats": {
+      "time": "Time",
+      "moves": "Moves",
+      "hints": "Hints Used",
+      "accuracy": "Accuracy",
+      "bestTime": "Best Time",
+      "averageTime": "Average Time",
+      "gamesCompleted": "Games Completed",
+      "currentStreak": "Current Streak"
+    },
+    "rules": {
+      "title": "How to Play",
+      "classic": [
+        "Fill each cell with a number from 1-9",
+        "Each row must contain all numbers 1-9",
+        "Each column must contain all numbers 1-9",
+        "Each 3x3 box must contain all numbers 1-9",
+        "No number can repeat in any row, column, or box"
+      ],
+      "speed": [
+        "Solve mini-puzzles as quickly as possible",
+        "Each correct solution adds time",
+        "Mistakes reduce your time",
+        "Complete as many as you can before time runs out"
+      ],
+      "puzzle": [
+        "Arrange numbers to match the target sum",
+        "Numbers can only be used once",
+        "Find multiple solutions for bonus points",
+        "Use hints wisely - they cost points"
+      ]
+    },
+    "achievements": {
+      "title": "Achievements",
+      "speedster": "Complete a puzzle in under 5 minutes",
+      "noHints": "Complete a puzzle without using hints",
+      "perfectScore": "Complete a puzzle with no mistakes",
+      "grandMaster": "Complete an expert puzzle",
+      "streakMaster": "Complete 5 puzzles in a row"
     }
   }
 }

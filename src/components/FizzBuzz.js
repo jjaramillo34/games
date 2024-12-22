@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import GameLayout from "../layouts/GameLayout";
 
 const FizzBuzz = () => {
   const { t } = useTranslation();
@@ -154,25 +155,19 @@ const FizzBuzz = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white p-4">
+    <GameLayout
+      title={t("fizzBuzz.title")}
+      description={t("fizzBuzz.description")}
+    >
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <motion.h1
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="text-4xl font-bold text-cyan-400 mb-4"
-          >
-            FizzBuzz
-          </motion.h1>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setShowRules(!showRules)}
-            className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-lg transition-colors duration-300"
-          >
-            {showRules ? t("hideRules") : t("showRules")}
-          </motion.button>
-        </div>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setShowRules(!showRules)}
+          className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-lg transition-colors duration-300 mb-4"
+        >
+          {showRules ? t("fizzBuzz.hideRules") : t("fizzBuzz.showRules")}
+        </motion.button>
 
         <AnimatePresence>{showRules && renderRules()}</AnimatePresence>
 
@@ -183,7 +178,7 @@ const FizzBuzz = () => {
             className="flex flex-col gap-4"
           >
             <h2 className="text-2xl font-bold text-center mb-4 text-cyan-400">
-              {t("selectGameMode")}
+              {t("fizzBuzz.selectGameMode")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <motion.button
@@ -192,7 +187,7 @@ const FizzBuzz = () => {
                 onClick={() => startGame("practice")}
                 className="p-6 bg-blue-500 hover:bg-blue-600 rounded-xl transition-colors duration-300"
               >
-                {t("practiceMode")}
+                {t("fizzBuzz.modes.practice")}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -200,7 +195,7 @@ const FizzBuzz = () => {
                 onClick={() => startGame("challenge")}
                 className="p-6 bg-green-500 hover:bg-green-600 rounded-xl transition-colors duration-300"
               >
-                {t("challengeMode")}
+                {t("fizzBuzz.modes.challenge")}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -208,13 +203,13 @@ const FizzBuzz = () => {
                 onClick={() => startGame("time-attack")}
                 className="p-6 bg-red-500 hover:bg-red-600 rounded-xl transition-colors duration-300"
               >
-                {t("timeAttackMode")}
+                {t("fizzBuzz.modes.timeAttack")}
               </motion.button>
             </div>
 
             <div className="mt-6">
               <h3 className="text-xl font-bold mb-4 text-cyan-400">
-                {t("selectDifficulty")}
+                {t("fizzBuzz.selectDifficulty")}
               </h3>
               <div className="flex justify-center gap-4">
                 {["easy", "medium", "hard"].map((level) => (
@@ -229,7 +224,7 @@ const FizzBuzz = () => {
                         : "bg-gray-700 hover:bg-gray-600"
                     }`}
                   >
-                    {t(level)}
+                    {t(`fizzBuzz.difficulty.${level}`)}
                   </motion.button>
                 ))}
               </div>
@@ -243,16 +238,22 @@ const FizzBuzz = () => {
           >
             <div className="flex justify-between items-center mb-6">
               <div className="text-xl">
-                <span className="text-cyan-400">{t("score")}: </span>
+                <span className="text-cyan-400">
+                  {t("fizzBuzz.stats.score")}:{" "}
+                </span>
                 <span className="font-bold">{score}</span>
               </div>
               <div className="text-xl">
-                <span className="text-cyan-400">{t("streak")}: </span>
+                <span className="text-cyan-400">
+                  {t("fizzBuzz.stats.streak")}:{" "}
+                </span>
                 <span className="font-bold">{streak}</span>
               </div>
               {gameMode === "time-attack" && (
                 <div className="text-xl">
-                  <span className="text-cyan-400">{t("time")}: </span>
+                  <span className="text-cyan-400">
+                    {t("fizzBuzz.stats.time")}:{" "}
+                  </span>
                   <span className="font-bold">{timeLeft}s</span>
                 </div>
               )}
@@ -274,7 +275,7 @@ const FizzBuzz = () => {
                   onChange={(e) =>
                     gameMode !== "challenge" && setNumber(e.target.value)
                   }
-                  placeholder={t("enterNumber")}
+                  placeholder={t("fizzBuzz.placeholders.number")}
                   className="w-full p-4 bg-gray-800 rounded-lg border-2 border-gray-700 focus:border-cyan-400 transition-colors duration-300"
                   readOnly={gameMode === "challenge"}
                 />
@@ -282,7 +283,7 @@ const FizzBuzz = () => {
                   type="text"
                   value={result}
                   onChange={(e) => setResult(e.target.value)}
-                  placeholder={t("enterAnswer")}
+                  placeholder={t("fizzBuzz.placeholders.answer")}
                   className="w-full p-4 bg-gray-800 rounded-lg border-2 border-gray-700 focus:border-cyan-400 transition-colors duration-300"
                 />
               </div>
@@ -292,7 +293,7 @@ const FizzBuzz = () => {
                 type="submit"
                 className="w-full p-4 bg-cyan-500 hover:bg-cyan-600 rounded-lg transition-colors duration-300 font-bold text-lg"
               >
-                {t("submit")}
+                {t("fizzBuzz.actions.submit")}
               </motion.button>
             </motion.form>
 
@@ -315,7 +316,7 @@ const FizzBuzz = () => {
 
             <div className="space-y-4">
               <h3 className="text-xl font-bold text-cyan-400">
-                {t("history")}
+                {t("fizzBuzz.history.title")}
               </h3>
               <div className="space-y-2">
                 {history.map((entry, index) => (
@@ -330,7 +331,7 @@ const FizzBuzz = () => {
                         : "bg-red-500/20 text-red-400"
                     }`}
                   >
-                    {t("historyEntry", {
+                    {t("fizzBuzz.history.entry", {
                       number: entry.number,
                       answer: entry.userAnswer,
                       correct: entry.correctAnswer,
@@ -346,12 +347,12 @@ const FizzBuzz = () => {
               onClick={endGame}
               className="w-full mt-8 p-4 bg-red-500 hover:bg-red-600 rounded-lg transition-colors duration-300 font-bold text-lg"
             >
-              {t("endGame")}
+              {t("fizzBuzz.actions.endGame")}
             </motion.button>
           </motion.div>
         )}
       </div>
-    </div>
+    </GameLayout>
   );
 };
 

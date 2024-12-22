@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import useSound from "use-sound";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import useSound from "use-sound";
-import { motion, AnimatePresence } from "framer-motion";
+import GameLayout from "../layouts/GameLayout";
 
 const suits = ["hearts", "diamonds", "clubs", "spades"];
 const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
@@ -190,15 +191,37 @@ const HighLowCardGame = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-emerald-800 to-emerald-950 text-white p-4">
-      <div className="w-full max-w-4xl bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-2xl">
-        <motion.h1
-          initial={{ scale: 0.5 }}
-          animate={{ scale: 1 }}
-          className="text-4xl font-bold text-center mb-8 text-emerald-400"
+    <GameLayout
+      title={t("highLowGame.title")}
+      description={t("highLowGame.description")}
+    >
+      <div className="max-w-4xl mx-auto">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setShowRules(!showRules)}
+          className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 rounded-lg transition-colors duration-300 mb-4"
         >
-          {t("highLowGame.title")}
-        </motion.h1>
+          {showRules ? t("highLowGame.hideRules") : t("highLowGame.showRules")}
+        </motion.button>
+
+        {showRules && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="mb-8 p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl"
+          >
+            <h2 className="text-2xl font-bold mb-4 text-emerald-400">
+              {t("highLowGame.rules.title")}
+            </h2>
+            <ul className="space-y-2 text-gray-300">
+              <li>• {t("highLowGame.rules.rule1")}</li>
+              <li>• {t("highLowGame.rules.rule2")}</li>
+              <li>• {t("highLowGame.rules.rule3")}</li>
+            </ul>
+          </motion.div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="flex flex-col gap-2">
@@ -242,43 +265,35 @@ const HighLowCardGame = () => {
           )}
         </div>
 
-        <AnimatePresence mode="wait">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {previousCard && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="flex flex-col items-center"
+            >
+              <div className="text-lg mb-2 text-emerald-400">
+                {t("highLowGame.previousCard")}
+              </div>
+              <div className="w-32 h-48 bg-white rounded-xl flex items-center justify-center text-4xl shadow-xl">
+                {previousCard}
+              </div>
+            </motion.div>
+          )}
+
           <motion.div
-            key={currentCard.value + currentCard.suit}
-            initial={{ rotateY: -180, opacity: 0 }}
-            animate={{ rotateY: 0, opacity: 1 }}
-            exit={{ rotateY: 180, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex justify-center gap-8 mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center"
           >
-            {previousCard && (
-              <div className="text-center opacity-50">
-                <div className="text-sm text-gray-300 mb-1">
-                  {t("highLowGame.cards.previous")}
-                </div>
-                <div
-                  className={`text-6xl font-bold ${getCardColor(
-                    previousCard.suit
-                  )}`}
-                >
-                  {previousCard.value} {suitEmojis[previousCard.suit]}
-                </div>
-              </div>
-            )}
-            <div className="text-center">
-              <div className="text-sm text-gray-300 mb-1">
-                {t("highLowGame.cards.current")}
-              </div>
-              <div
-                className={`text-8xl font-bold ${getCardColor(
-                  currentCard.suit
-                )}`}
-              >
-                {currentCard.value} {suitEmojis[currentCard.suit]}
-              </div>
+            <div className="text-lg mb-2 text-emerald-400">
+              {t("highLowGame.currentCard")}
+            </div>
+            <div className="w-32 h-48 bg-white rounded-xl flex items-center justify-center text-4xl shadow-xl">
+              {currentCard}
             </div>
           </motion.div>
-        </AnimatePresence>
+        </div>
 
         <div className="text-xl text-center mb-6 h-8 text-emerald-400 font-semibold">
           {message}
@@ -329,18 +344,24 @@ const HighLowCardGame = () => {
             </h3>
             <div className="grid grid-cols-4 gap-4 text-sm">
               {leaderboard.map((entry, index) => (
-                <div key={index} className="bg-white/5 p-2 rounded">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white/5 p-2 rounded"
+                >
                   <div className="font-bold">{entry.score}</div>
                   <div>{new Date(entry.date).toLocaleDateString()}</div>
                   <div>{t(`highLowGame.modes.${entry.mode}`)}</div>
                   <div>{t(`highLowGame.difficulty.${entry.difficulty}`)}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         )}
       </div>
-    </div>
+    </GameLayout>
   );
 };
 

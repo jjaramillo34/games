@@ -12,11 +12,12 @@ const Header = ({
   const { t } = useTranslation();
 
   const games = [
-    { path: "/tictactoe", name: t("ticTacToe"), icon: "❌" },
-    { path: "/fizzbuzz", name: t("fizzBuzz"), icon: "🔢" },
-    { path: "/hangman", name: t("hangman"), icon: "👻" },
-    { path: "/highlow", name: t("highLowCardGame"), icon: "🎴" },
-    { path: "/memorygame", name: t("memoryGame"), icon: "🧩" },
+    { path: "/tictactoe", name: t("gameNames.ticTacToe"), icon: "❌" },
+    { path: "/fizzbuzz", name: t("gameNames.fizzBuzz"), icon: "🔢" },
+    { path: "/hangman", name: t("gameNames.hangman"), icon: "👻" },
+    { path: "/highlow", name: t("gameNames.highLowCardGame"), icon: "🎴" },
+    { path: "/memorygame", name: t("gameNames.memoryGame"), icon: "🧩" },
+    { path: "/numbermaster", name: t("gameNames.numberMaster"), icon: "🎯" },
   ];
 
   return (
@@ -39,70 +40,30 @@ const Header = ({
                   : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500"
               } transition-all duration-300`}
             >
-              {t("gameMenu")}
+              {t("navigation.gameMenu")}
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
-            <div className="relative group">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`inline-flex items-center px-4 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            {games.map((game) => (
+              <Link
+                key={game.path}
+                to={game.path}
+                className={`flex items-center px-3 py-2 rounded-md text-sm font-medium ${
                   isDarkTheme
                     ? "text-gray-300 hover:text-white hover:bg-gray-700/50"
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50"
-                }`}
+                } transition-all duration-300`}
               >
-                {t("games")}
-                <svg
-                  className={`ml-2 h-5 w-5 transform transition-transform duration-300 ${
-                    isMenuOpen ? "rotate-180" : ""
-                  }`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
+                <span className="mr-2">{game.icon}</span>
+                {game.name}
+              </Link>
+            ))}
+          </div>
 
-              {/* Dropdown Menu */}
-              {isMenuOpen && (
-                <div
-                  className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg ${
-                    isDarkTheme
-                      ? "bg-gray-800 ring-1 ring-black ring-opacity-5"
-                      : "bg-white ring-1 ring-black ring-opacity-5"
-                  }`}
-                >
-                  <div className="py-1" role="menu">
-                    {games.map((game) => (
-                      <Link
-                        key={game.path}
-                        to={game.path}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`group flex items-center px-4 py-3 text-sm ${
-                          isDarkTheme
-                            ? "text-gray-300 hover:text-white hover:bg-gray-700/50"
-                            : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                        } transition-all duration-300`}
-                      >
-                        <span className="mr-3 text-lg group-hover:scale-125 transition-transform duration-300">
-                          {game.icon}
-                        </span>
-                        {game.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
+          {/* Right side buttons */}
+          <div className="flex items-center space-x-2">
             {/* Language Toggle */}
             <button
               onClick={onLanguageChange}
@@ -156,17 +117,16 @@ const Header = ({
                 </svg>
               )}
             </button>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+            {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-md ${
+              className={`md:hidden p-2 rounded-md ${
                 isDarkTheme
                   ? "text-gray-400 hover:text-white hover:bg-gray-700"
                   : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-              } focus:outline-none`}
+              }`}
+              aria-label="Toggle mobile menu"
             >
               <svg
                 className="h-6 w-6"
@@ -195,7 +155,7 @@ const Header = ({
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden">
           <div
@@ -231,7 +191,7 @@ const Header = ({
               <span className="mr-3">
                 {currentLanguage.startsWith("es")
                   ? "🇺🇸 Switch to English"
-                  : "🇪🇸 Cambiar a Español"}
+                  : "🇪��� Cambiar a Español"}
               </span>
             </button>
 
@@ -245,7 +205,9 @@ const Header = ({
               } transition-all duration-300`}
             >
               <span className="mr-3">
-                {isDarkTheme ? t("lightMode") : t("darkMode")}
+                {isDarkTheme
+                  ? t("navigation.lightMode")
+                  : t("navigation.darkMode")}
               </span>
             </button>
           </div>

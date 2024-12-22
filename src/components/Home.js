@@ -7,11 +7,37 @@ const Home = ({ isDarkTheme }) => {
   const { t } = useTranslation();
 
   const games = [
-    { path: "/tictactoe", name: t("ticTacToe"), icon: "❌", delay: 0.1 },
-    { path: "/fizzbuzz", name: t("fizzBuzz"), icon: "🔢", delay: 0.2 },
-    { path: "/hangman", name: t("hangman"), icon: "👻", delay: 0.3 },
-    { path: "/highlow", name: t("highLowCardGame"), icon: "🎴", delay: 0.4 },
-    { path: "/memorygame", name: t("memoryGame"), icon: "🧩", delay: 0.5 },
+    {
+      path: "/tictactoe",
+      name: t("gameNames.ticTacToe"),
+      icon: "❌",
+      delay: 0.1,
+    },
+    {
+      path: "/fizzbuzz",
+      name: t("gameNames.fizzBuzz"),
+      icon: "🔢",
+      delay: 0.2,
+    },
+    { path: "/hangman", name: t("gameNames.hangman"), icon: "👻", delay: 0.3 },
+    {
+      path: "/highlow",
+      name: t("gameNames.highLowCardGame"),
+      icon: "🎴",
+      delay: 0.4,
+    },
+    {
+      path: "/memorygame",
+      name: t("gameNames.memoryGame"),
+      icon: "🧩",
+      delay: 0.5,
+    },
+    {
+      path: "/numbermaster",
+      name: t("gameNames.numberMaster"),
+      icon: "🎯",
+      delay: 0.6,
+    },
   ];
 
   const containerVariants = {
@@ -38,19 +64,19 @@ const Home = ({ isDarkTheme }) => {
 
   const features = [
     {
-      icon: "🎮",
-      title: t("modernDesign"),
-      description: t("modernDesignDesc"),
+      icon: t("homePage.features.modernDesign.emoji"),
+      title: t("homePage.features.modernDesign.title"),
+      description: t("homePage.features.modernDesign.description"),
     },
     {
-      icon: "🏆",
-      title: t("trackProgress"),
-      description: t("trackProgressDesc"),
+      icon: t("homePage.features.trackProgress.emoji"),
+      title: t("homePage.features.trackProgress.title"),
+      description: t("homePage.features.trackProgress.description"),
     },
     {
-      icon: "🎯",
-      title: t("multipleModes"),
-      description: t("multipleModesDesc"),
+      icon: t("homePage.features.multipleModes.emoji"),
+      title: t("homePage.features.multipleModes.title"),
+      description: t("homePage.features.multipleModes.description"),
     },
   ];
 
@@ -73,7 +99,7 @@ const Home = ({ isDarkTheme }) => {
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, type: "spring" }}
         >
-          {t("welcome")}
+          {t("homePage.welcome")}
         </motion.h1>
         <motion.p
           className={`text-xl ${
@@ -83,7 +109,7 @@ const Home = ({ isDarkTheme }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          {t("chooseGame")}
+          {t("homePage.chooseGame")}
         </motion.p>
       </motion.div>
 
@@ -127,7 +153,7 @@ const Home = ({ isDarkTheme }) => {
                       isDarkTheme ? "text-gray-400" : "text-gray-600"
                     }`}
                   >
-                    {t("play")} {game.name}
+                    {t("commonActions.play")} {game.name}
                   </p>
                 </div>
               </div>
@@ -232,30 +258,28 @@ const Home = ({ isDarkTheme }) => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            {t("dedication")}
+            {t("homePage.dedication.title")}
           </motion.h2>
           <motion.p
             className={`text-xl mb-6 ${
               isDarkTheme ? "text-gray-300" : "text-gray-600"
             }`}
           >
-            {t("dedicationText")}{" "}
+            {t("homePage.dedication.text")}{" "}
             <motion.span
               className="inline-block"
               whileHover={{ scale: 1.3, rotate: 10 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              ❤️
+              {t("homePage.dedication.emoji")}
             </motion.span>
           </motion.p>
           <motion.p
             className={`text-lg italic ${
-              isDarkTheme ? "text-cyan-400" : "text-blue-600"
+              isDarkTheme ? "text-gray-400" : "text-gray-600"
             }`}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
           >
-            {t("dedicationQuote")}
+            {t("homePage.dedication.quote")}
           </motion.p>
         </div>
       </motion.div>

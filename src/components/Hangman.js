@@ -1,18 +1,95 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  fetchRandomWord,
-  getWordDefinition,
-  preloadWords,
-} from "../services/dictionaryService";
+import GameLayout from "../layouts/GameLayout";
+
+// Dictionary of words for each difficulty level
+const WORD_LISTS = {
+  easy: [
+    "cat",
+    "dog",
+    "sun",
+    "hat",
+    "run",
+    "fun",
+    "big",
+    "red",
+    "box",
+    "cup",
+    "pen",
+    "map",
+    "car",
+    "bus",
+    "toy",
+    "day",
+    "sky",
+    "fly",
+    "joy",
+    "key",
+  ],
+  medium: [
+    "house",
+    "mouse",
+    "plant",
+    "train",
+    "beach",
+    "light",
+    "phone",
+    "music",
+    "happy",
+    "green",
+    "table",
+    "chair",
+    "water",
+    "paper",
+    "clock",
+    "bread",
+    "smile",
+    "dance",
+    "cloud",
+    "heart",
+  ],
+  hard: [
+    "elephant",
+    "computer",
+    "mountain",
+    "birthday",
+    "rainbow",
+    "library",
+    "butterfly",
+    "chocolate",
+    "umbrella",
+    "adventure",
+    "dinosaur",
+    "treasure",
+    "princess",
+    "football",
+    "hospital",
+    "vacation",
+    "universe",
+    "painting",
+    "sandwich",
+    "triangle",
+  ],
+};
+
+// Dictionary of hints for each word
+const WORD_HINTS = {
+  // Easy words
+  cat: "A common household pet that meows",
+  dog: "A loyal pet that barks",
+  sun: "It lights up the day",
+  hat: "You wear it on your head",
+  // ... add more hints for other words
+};
 
 const Hangman = () => {
   const { t, i18n } = useTranslation();
   const [word, setWord] = useState("");
   const [guessedLetters, setGuessedLetters] = useState(new Set());
   const [wrongGuesses, setWrongGuesses] = useState(0);
-  const [gameStatus, setGameStatus] = useState("playing"); // playing, won, lost
+  const [gameOver, setGameOver] = useState(false);
+  const [isWinner, setIsWinner] = useState(false);
   const [difficulty, setDifficulty] = useState("medium");
   const [definition, setDefinition] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,8 +99,6 @@ const Hangman = () => {
     const initGame = async () => {
       setIsLoading(true);
       try {
-        // Preload some words for better user experience
-        await preloadWords(i18n.language);
         await startNewGame();
       } catch (error) {
         console.error("Error initializing game:", error);
@@ -32,18 +107,27 @@ const Hangman = () => {
     };
 
     initGame();
-  }, [i18n.language]);
+  }, []);
+
+  const getRandomWord = (difficulty) => {
+    const wordList = WORD_LISTS[difficulty];
+    return wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
+  };
+
+  const getWordHint = (word) => {
+    return WORD_HINTS[word.toLowerCase()] || "No hint available";
+  };
 
   const startNewGame = async () => {
     setIsLoading(true);
     try {
-      const newWord = await fetchRandomWord(i18n.language, difficulty);
+      const newWord = getRandomWord(difficulty);
       setWord(newWord);
       setGuessedLetters(new Set());
       setWrongGuesses(0);
-      setGameStatus("playing");
-      const wordDef = await getWordDefinition(newWord, i18n.language);
-      setDefinition(wordDef);
+      setGameOver(false);
+      setIsWinner(false);
+      setDefinition(getWordHint(newWord));
     } catch (error) {
       console.error("Error starting new game:", error);
     }
@@ -51,7 +135,7 @@ const Hangman = () => {
   };
 
   const handleGuess = (letter) => {
-    if (gameStatus !== "playing" || guessedLetters.has(letter)) return;
+    if (gameOver || guessedLetters.has(letter)) return;
 
     const newGuessedLetters = new Set(guessedLetters).add(letter);
     setGuessedLetters(newGuessedLetters);
@@ -60,54 +144,30 @@ const Hangman = () => {
       const newWrongGuesses = wrongGuesses + 1;
       setWrongGuesses(newWrongGuesses);
       if (newWrongGuesses >= maxWrongGuesses) {
-        setGameStatus("lost");
+        setGameOver(true);
+        setIsWinner(false);
       }
     } else {
       const isWon = word
         .split("")
         .every((letter) => newGuessedLetters.has(letter));
       if (isWon) {
-        setGameStatus("won");
+        setGameOver(true);
+        setIsWinner(true);
       }
     }
   };
 
-  const renderWord = () => {
-    return word.split("").map((letter, index) => (
-      <motion.span
-        key={index}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: index * 0.1 }}
-        className="mx-1 text-4xl font-bold"
-      >
-        {guessedLetters.has(letter) ? letter : "_"}
-      </motion.span>
-    ));
-  };
-
-  const renderKeyboard = () => {
-    const keyboard =
-      i18n.language === "es"
-        ? "abcdefghijklmnñopqrstuvwxyzáéíóú"
-        : "abcdefghijklmnopqrstuvwxyz";
-
-    return keyboard.split("").map((letter) => (
-      <motion.button
-        key={letter}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className={`m-1 px-4 py-2 rounded-lg font-semibold transition-colors ${
-          guessedLetters.has(letter)
-            ? "bg-gray-400 text-gray-600 cursor-not-allowed"
-            : "bg-blue-500 hover:bg-blue-600 text-white"
-        }`}
-        onClick={() => handleGuess(letter)}
-        disabled={guessedLetters.has(letter) || gameStatus !== "playing"}
-      >
-        {letter.toUpperCase()}
-      </motion.button>
-    ));
+  const getHint = () => {
+    // Reveal a random unguessed letter that's in the word
+    const unguessedLetters = word
+      .split("")
+      .filter((letter) => !guessedLetters.has(letter));
+    if (unguessedLetters.length > 0) {
+      const randomLetter =
+        unguessedLetters[Math.floor(Math.random() * unguessedLetters.length)];
+      handleGuess(randomLetter);
+    }
   };
 
   const renderHangman = () => {
@@ -180,97 +240,145 @@ const Hangman = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full"
-        />
-      </div>
+      <GameLayout>
+        <div className="flex justify-center items-center">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full"
+          />
+        </div>
+      </GameLayout>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <GameLayout
+      title={t("hangman.title")}
+      description={t("hangman.description")}
+    >
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">{t("hangman")}</h1>
-          <div className="flex justify-center space-x-4 mb-4">
-            {["easy", "medium", "hard"].map((level) => (
-              <button
-                key={level}
-                onClick={() => {
-                  setDifficulty(level);
-                  startNewGame();
-                }}
-                className={`px-4 py-2 rounded-lg font-semibold ${
-                  difficulty === level
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {t(level)}
-              </button>
-            ))}
-          </div>
+        <div className="flex justify-center space-x-4 mb-8">
+          {["easy", "medium", "hard"].map((level) => (
+            <motion.button
+              key={level}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                setDifficulty(level);
+                startNewGame();
+              }}
+              className={`px-4 py-2 rounded-lg font-semibold ${
+                difficulty === level
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {t(`hangman.difficulty.${level}`)}
+            </motion.button>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="text-center">
-            <div className="mb-8">{renderHangman()}</div>
-            <div className="mb-8 min-h-[3rem]">{renderWord()}</div>
-          </div>
-
-          <div>
-            <div className="flex flex-wrap justify-center mb-8">
-              {renderKeyboard()}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div className="flex flex-col items-center">
+            <div className="font-mono text-sm md:text-base whitespace-pre mb-4">
+              {renderHangman()}
+            </div>
+            <div className="text-xl font-bold mb-2">
+              {t("hangman.stats.attempts")}: {6 - wrongGuesses}
             </div>
           </div>
+
+          <div className="flex flex-col items-center">
+            <div className="text-4xl font-bold mb-4 tracking-wider">
+              {word.split("").map((letter, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {guessedLetters.has(letter) ? letter : "_"}
+                </motion.span>
+              ))}
+            </div>
+
+            {definition && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center mb-4 text-gray-300"
+              >
+                <div className="font-semibold mb-1">{t("hangman.hint")}:</div>
+                <div>{definition}</div>
+              </motion.div>
+            )}
+          </div>
         </div>
 
-        <AnimatePresence>
-          {gameStatus !== "playing" && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="text-center mt-8"
+        <div className="grid grid-cols-7 md:grid-cols-13 gap-2 mb-8">
+          {Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ").map((letter) => (
+            <motion.button
+              key={letter}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => handleGuess(letter)}
+              disabled={guessedLetters.has(letter)}
+              className={`p-2 md:p-3 rounded-lg font-bold transition-colors duration-300 ${
+                guessedLetters.has(letter)
+                  ? "bg-gray-600 text-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600 text-white"
+              }`}
             >
+              {letter}
+            </motion.button>
+          ))}
+        </div>
+
+        <div className="flex justify-center space-x-4">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={startNewGame}
+            className="px-6 py-2 bg-green-500 hover:bg-green-600 rounded-lg transition-colors duration-300 font-semibold"
+          >
+            {t("hangman.actions.newGame")}
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={getHint}
+            className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 rounded-lg transition-colors duration-300 font-semibold"
+          >
+            {t("hangman.actions.hint")}
+          </motion.button>
+        </div>
+
+        {gameOver && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+          >
+            <div className="bg-gray-800 p-8 rounded-xl text-center">
               <h2 className="text-2xl font-bold mb-4">
-                {gameStatus === "won" ? t("youWon") : t("youLost")}
+                {isWinner
+                  ? t("hangman.messages.win")
+                  : t("hangman.messages.lose", { word })}
               </h2>
-              {gameStatus === "lost" && (
-                <p className="mb-4">
-                  {t("theWordWas")}: <span className="font-bold">{word}</span>
-                </p>
-              )}
-              {definition && (
-                <div className="mt-4 p-4 bg-gray-100 rounded-lg">
-                  <h3 className="font-bold mb-2">{t("wordDefinition")}:</h3>
-                  {definition.definitions.slice(0, 2).map((def, index) => (
-                    <div key={index} className="mb-2">
-                      <p className="italic text-gray-600">{def.partOfSpeech}</p>
-                      <p>{def.definition}</p>
-                      {def.example && (
-                        <p className="text-sm text-gray-500">
-                          {t("example")}: {def.example}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={startNewGame}
-                className="mt-4 px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+                className="px-6 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors duration-300 font-semibold"
               >
-                {t("playAgain")}
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                {t("hangman.actions.playAgain")}
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
       </div>
-    </div>
+    </GameLayout>
   );
 };
 
