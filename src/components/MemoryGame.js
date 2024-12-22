@@ -188,6 +188,7 @@ const MemoryGame = () => {
   });
   const [showCongrats, setShowCongrats] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isNewBestScore, setIsNewBestScore] = useState(false);
 
   useEffect(() => {
     initializeGame();
@@ -233,6 +234,7 @@ const MemoryGame = () => {
     setIsPlaying(false);
     setIsPaused(false);
     setShowCongrats(false);
+    setIsNewBestScore(false);
   };
 
   const handleCardClick = (index) => {
@@ -259,6 +261,7 @@ const MemoryGame = () => {
       const currentScore = turns;
       if (currentScore < bestScores[difficulty]) {
         setBestScores((prev) => ({ ...prev, [difficulty]: currentScore }));
+        setIsNewBestScore(true);
         setShowCongrats(true);
       }
     }
